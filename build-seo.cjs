@@ -8,14 +8,14 @@ const pages={
  stewart:['Stewart | Montgomery & Co. Assistant Workspace','Stewart assistant setup and communication workflow for Haley Montgomery and Montgomery & Co.','Stewart Assistant'],
  index:['South Alabama Real Estate | Haley Montgomery | Montgomery & Co.','Buy or sell a home in South Alabama with broker Haley Montgomery. Explore Fairhope, Daphne, Spanish Fort, Loxley and the Gulf Coast with Montgomery & Co.','South Alabama Real Estate'],
  homes:['Baldwin County Homes for Sale | Montgomery & Co.','Search Baldwin REALTORS® homes for sale and connect with Haley Montgomery for guidance in Fairhope, Daphne, Spanish Fort, Loxley, Foley and the Gulf Coast.','Find a Home'],
- broker:['Haley Montgomery, South Alabama Real Estate Broker | Montgomery & Co.','Meet Haley Montgomery, broker at Montgomery & Co. With 11 years in real estate, Haley helps South Alabama buyers, sellers, investors, veterans and retirees.','Meet the Broker'],
+ broker:['Haley Montgomery, South Alabama Real Estate Broker | Montgomery & Co.','Meet Haley Montgomery, broker and owner of Montgomery & Co. With 11 years in real estate, Haley helps South Alabama buyers, sellers, investors, veterans and retirees.','Meet the Broker'],
  agents:['Meet the Montgomery & Co. Real Estate Agents | South Alabama','Meet broker Haley Montgomery and the Montgomery & Co. team. Connect with local real estate agents serving South Alabama and the Eastern Shore.','Meet the Agents'],
- about:['About Montgomery & Co. | South Alabama Real Estate','Learn about Montgomery & Co., led by broker Haley Montgomery. Personal real estate guidance for buying and selling across South Alabama.','About Us'],
+ about:['About Montgomery & Co. | South Alabama Real Estate','Learn about Montgomery & Co., led by broker and owner Haley Montgomery. Personal real estate guidance for buying and selling across South Alabama.','About Us'],
  testimonials:['Haley Montgomery Reviews & Testimonials | Montgomery & Co.','Read a client review excerpt and visit Haley Montgomery’s Zillow and Facebook profiles for more client stories about real estate in South Alabama.','Client Testimonials']
 };
 const esc=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
 const organization={ '@type':'RealEstateAgent','@id':base+'/#business',name:'Montgomery & Co., LLC',url:base+'/',logo:base+'/assets/montgomery-co-logo.png',image:base+'/assets/montgomery-co-logo.png',telephone:'+1-251-308-0016',email:'haleymontgomery.realty@gmail.com',areaServed:['Fairhope','Daphne','Spanish Fort','Loxley','Foley','Gulf Shores','Orange Beach'].map(name=>({'@type':'City',name,address:{'@type':'PostalAddress',addressRegion:'AL',addressCountry:'US'}})),sameAs:['https://www.facebook.com/haleymontgomeryrealtor','https://www.zillow.com/profile/haleymontgomeryrealty','https://baldwinrealtors.com/offices/2773643']};
-const person={'@type':'Person','@id':base+'/#haley',name:'Haley Montgomery',jobTitle:'Real Estate Broker',worksFor:{'@id':base+'/#business'},url:base+'/broker.html',telephone:'+1-251-308-0016',email:'haleymontgomery.realty@gmail.com'};
+const person={'@type':'Person','@id':base+'/#haley',name:'Haley Montgomery',jobTitle:'Broker & Owner',worksFor:{'@id':base+'/#business'},url:base+'/broker.html',telephone:'+1-251-308-0016',email:'haleymontgomery.realty@gmail.com'};
 for(const [slug,[title,description,name]]of Object.entries(pages)){
  let html='';let review='';
  const app={innerHTML:'',hasChildNodes:()=>false};
