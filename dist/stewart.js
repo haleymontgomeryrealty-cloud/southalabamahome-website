@@ -28,4 +28,21 @@
   if(data?.action==='submission-completed'&&String(data.formID||data.formId)===FORM){state.registered=true;storage.write(state)}
  });
  const preview=document.getElementById('schedule-state');if(preview)preview.onchange=()=>{document.getElementById('schedule-result').textContent=preview.value==='active'?'Next channel check: every 15 minutes, until the conversation ends or there is no response for 30 minutes. This preview does not change the saved monitor.':'Next channel check: hourly. This preview does not change the saved monitor.'};
+ const EMAIL='haleymontgomery.realty@gmail.com',SMS='+12513080016';
+ const contact=document.createElement('dialog');contact.className='stewart-dialog';contact.setAttribute('aria-labelledby','contact-title');
+ contact.innerHTML='<button type="button" class="stewart-close" aria-label="Close">×</button><div class="eyebrow">Montgomery & Co.</div><h2 id="contact-title">Contact Haley</h2><p>How would you like to reach Haley?</p><div class="stewart-options"><a class="accent" data-contact="email" href="mailto:'+EMAIL+'">Send an email</a><a data-contact="text" href="sms:'+SMS+'">Send a text</a></div><p style="margin-top:18px">Email: <a data-contact="email" href="mailto:'+EMAIL+'">'+EMAIL+'</a><br>Text or call: <a href="tel:'+SMS+'">(251) 308-0016</a></p><p class="muted">No email app on this computer? <a data-contact="gmail" target="_blank" rel="noopener" href="#">Open the email in Gmail ↗</a></p>';
+ document.body.append(contact);
+ let contactFocus=null;
+ contact.querySelector('.stewart-close').onclick=()=>{contact.close();contactFocus?.focus()};
+ contact.addEventListener('cancel',()=>contactFocus?.focus());
+ document.addEventListener('click',event=>{
+  const trigger=event.target.closest('[data-contact-haley]');if(!trigger)return;
+  event.preventDefault();contactFocus=trigger;
+  const mail=new URL(trigger.getAttribute('href'));const subject=mail.searchParams.get('subject')||'Real estate question for Haley';
+  const mailto='mailto:'+EMAIL+'?subject='+encodeURIComponent(subject);
+  contact.querySelectorAll('[data-contact="email"]').forEach(a=>a.href=mailto);
+  contact.querySelector('[data-contact="text"]').href='sms:'+SMS+'?&body='+encodeURIComponent('Hi Haley, ');
+  contact.querySelector('[data-contact="gmail"]').href='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(EMAIL)+'&su='+encodeURIComponent(subject);
+  if(!contact.open)contact.showModal();
+ });
 })();
