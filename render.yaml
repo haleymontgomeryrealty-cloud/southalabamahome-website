@@ -1,0 +1,21 @@
+# Apply from a repository with this website directory at its root.
+# Public static site for southalabamahome.com. The private Stewart workspace page is removed after build.
+services:
+  - type: web
+    name: southalabamahome-website
+    runtime: static
+    buildCommand: node build-seo.cjs && rm -f dist/stewart.html
+    staticPublishPath: ./dist
+    envVars:
+      - key: SITE_URL
+        value: https://southalabamahome.com
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
